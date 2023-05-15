@@ -1,0 +1,34 @@
+.hits {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+
+.recepie {
+
+}
+
+.title {
+
+}
+
+.picture {
+  max-width: 100%;
+}
+
+.ready {
+
+}
+
+.source {
+
+}
+
+.cuisines {
+
+}
+
+.diets {
+  display: flex;
+}
