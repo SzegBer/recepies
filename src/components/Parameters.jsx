@@ -1,30 +1,18 @@
 // you can chose the parameters for the recepie you are searching for
 
-import { useCallback, useEffect } from "react";
-import { useFetch } from "../hooks/useFetch";
+import { useCallback, useEffect, useState } from "react";
 import Recepie from "./Recepie";
 
-const eredetiURL = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch'
 
 const Parameters = () => {
 
-  let cuisine = 'italian'
-  let diet = ''
-  let type = ''
-  let maxReadyTime = '60'
-  let nr = '6'
-
-  let baseUrl = 'https://api.spoonacular.com/recipes/complexSearch'
-  let apiKey = 'f9d7f1bf8069414388b168f2bd13947b'
-
-  let url = `${baseUrl}?apiKey=${apiKey}&cuisine=${cuisine}&diet=${diet}&type=${type}&maxReadyTime=${maxReadyTime}&number=${nr}`
-
-  let { data } = useFetch(url)
-  console.log(data)
-
-
-
-
+  let options = {
+    cuisine: 'italian',
+    diet: '',
+    type: '',
+    maxReadyTime: '60',
+    nr: '6'
+  }
 
 
 
@@ -73,7 +61,7 @@ const Parameters = () => {
       </div>*/}
 
       <button>START THE SEARCH</button>
-      <Recepie />
+      <Recepie options={options}/>
 
     </div>
   )
