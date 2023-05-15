@@ -3,13 +3,14 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Recepie from "./Recepie";
 import './styles/Parameters.css'
+import { types, diets, cuisines } from './db/data.js'
+import Suboptions from "./Suboptions";
 
 const Parameters = () => {
   
   const [ showCuisineOptions, setShowCuisineOptions ] = useState(false)
   const [ showTypeOptions, setShowTypeOptions ] = useState(false)
   const [ showDietOptions, setShowDietOptions ] = useState(false)
-  //const chosedAsParameter = false
 
   const [ options, setOptions ] = useState({
     cuisine: '',
@@ -40,39 +41,28 @@ const Parameters = () => {
     }    
   }
 
-  // changes options state _cuisine property_ value (single value)
-  const changeCuisine = (e) => {
+  // changes 'options' state _type_ or _cuisine_ property value (to a single value) + toggles classNames
+  const changeFilter = (e) => {
+    let property = e.target.parentElement.classList[1]
 
     setOptions({
       ...options,
-      cuisine: e.target.value
+      [property]: e.target.value
     })
-    let els = document.querySelector('.cuisine').getElementsByClassName('chosed')
-    if(els){
-      while (els[0]) {
-        els[0].classList.remove('chosed')
+    
+    const classToggler = (property) => {
+      let els = document.querySelector(`.${property}`).getElementsByClassName('chosed')
+      if(els){
+        while (els[0]) {
+          els[0].classList.remove('chosed')
+        }
       }
+      e.target.className = 'chosed'
     }
-    e.target.className = 'chosed'
-  }
-  
-  // changes options state _type property_ value (single value)
-  const changeType = (e) => {
-    setOptions({
-      ...options,
-      type: e.target.value
-    })
-    let els = document.querySelector('.type').getElementsByClassName('chosed')
-    if(els){
-      while (els[0]) {
-        els[0].classList.remove('chosed')
-      }
-    }
-    e.target.className = 'chosed'
+    classToggler(property)
   }
 
-
-  // updates options state _diet property_ value (multi values) + toggles classNames
+  // updates 'options' state _diet_ property value (to multi values) + toggles classNames
   const changeDiet = (e) => {
     if(options.diet === null){
       setOptions({
@@ -100,25 +90,6 @@ const Parameters = () => {
     }
   }
 
-  const cuisines = ["African", "American", "Caribbean", "Chinese", "French", "Greek", "Indian", "Italian", "Japanese", "Mexican", "Thai"]
-
-  const types = [
-    { name: 'main course', value: 'main%20course'},
-    { name: 'side dish', value: 'side%20dish'},
-    { name: 'dessert', value: 'dessert'},
-    { name: 'appetizer', value: 'appetizer'},
-    { name: 'breakfast', value: 'breakfast'},
-    { name: 'soup', value: 'soup'},
-    { name: 'snack', value: 'snack'},
-    { name: 'drink', value: 'drink'}
-  ]
-
-  const diets = [
-    { name: 'vegetarian', value: 'vegetarian'},
-    { name: 'vegan', value: 'vegan'},
-    { name: 'dairy free', value: 'dairyFree'},
-    { name: 'gluten free', value: 'glutenFree'}
-  ]
 
 
   return (
@@ -126,33 +97,20 @@ const Parameters = () => {
 
       <button className="options" value="cuisine" onClick={displayOptions}>search by cuisine</button>
       <div className="filter cuisine">
-        {showCuisineOptions && cuisines.map((cuisine, i) => (
-          <React.Fragment key={cuisine+i}>
-            <button value={cuisine} onClick={changeCuisine}>{cuisine}</button>
-          </React.Fragment>
-        ))}
-      </div>    
+        {showCuisineOptions && <Suboptions suboptions={cuisines} changeStg={changeFilter}/>}
+      </div>
 
       <button className="options" value="type" onClick={displayOptions}>search by type</button>
       <div className="filter type">
-        {showTypeOptions && types.map((type, i) => (
-          <React.Fragment key={type.name+i}>
-            <button value={type.value} onClick={changeType}>{type.name}</button>
-          </React.Fragment>
-        ))}
+        {showTypeOptions && <Suboptions suboptions={types} changeStg={changeFilter}/>}
       </div>
-      
 
       <button className="options" value="diet" onClick={displayOptions}>search by diet</button>
-        <div className="filter diet">
-          {showDietOptions && diets.map((diet,i) => (
-            <React.Fragment key={diet.name+i}>
-              <button value={diet.value} onClick={changeDiet}>{diet.name}</button>
-            </React.Fragment>
-          ))}
-        </div>
+      <div className="filter diet">
+        {showDietOptions && <Suboptions suboptions={diets} changeStg={changeDiet}/>}
+      </div>
 
-      {/*<Recepie options={options} />*/}
+      {/*<Recepie RECIPE options={options} />*/}
       
     </div>
   )
