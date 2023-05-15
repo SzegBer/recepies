@@ -1,0 +1,28 @@
+
+
+button {
+  padding: 10px 20px;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  margin: 10px 5px;
+  text-transform: uppercase;
+}
+
+.filter > button {
+  text-transform: lowercase;
+  background-color: rgb(190, 17, 138);
+}
+
+.filter > button:hover {
+  background-color: rgb(253, 153, 223);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.filter > .chosed {
+  background-color: rgb(74, 194, 50);
+}
+
+.options {
+  display: block;
+}
