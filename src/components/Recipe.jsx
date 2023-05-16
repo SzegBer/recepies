@@ -10,30 +10,38 @@ import { useFetch } from '../hooks/useFetch'
 const Recipe = (props) => {
 
   const options = props.options
-
   const urlBuilder = () => {
     const baseUrl = 'https://api.spoonacular.com/recipes/complexSearch'
     const apiKey = 'f9d7f1bf8069414388b168f2bd13947b'
 
-    const cuisine = options.cuisine
-    const diet = options.diet
-    const type = options.type
-    const nr = options.nr
-  
-    return `${baseUrl}?apiKey=${apiKey}&cuisine=${cuisine}&diet=${diet}&type=${type}&number=${nr}`
+    return `${baseUrl}?apiKey=${apiKey}&cuisine=${options.cuisine}&diet=${options.diet}&type=${options.type}&number=${options.nr}`
   }
 
   let url = urlBuilder()
-  //console.log(url)
   const { data: recipes } = useFetch(url)
 
+
+  // Tidy up the values from options state (change their URL related special characters) to display them in the DOM 
+  const neatCuisine = options.cuisine.replace(/%20/g, " ")
+  const neatType = options.type.replace(/%20/g, " ")
+  let pattern = /[A-Z]/
+  let neatDiet = ''
+  if(options.diet !== null){
+    for(let i=0; i<options.diet.length; i++){
+      pattern.test(options.diet[i]) ? 
+        neatDiet = neatDiet + " " + options.diet[i] : 
+        neatDiet = neatDiet + options.diet[i]
+    }
+  }
+  
   return (
     <div className="recipes">
-      <h2>Here are your recipes. Good luck with the cooking!</h2>
-
+      <h3>You have asked for some {neatCuisine} {neatDiet.toLowerCase()} {neatType} recipes.</h3>
+      {recipes && recipes.totalResults ?
+      <h2>Good news! We have some, here you go:</h2> :
+      <h2>Bad news, we do not have the recipe you are looking for.</h2>}
       <div className="hits">
-        {
-        recipes && recipes.results.map((recipe) => (
+        {recipes && recipes.results.map((recipe) => (
           <div className="recipe" key={recipe.id}>
             <img className="picture" src={recipe.image} alt={recipe.title} />
             <h3 className="title">{recipe.title}</h3>
@@ -46,3 +54,8 @@ const Recipe = (props) => {
 }
 
 export default Recipe;
+
+/*
+
+{recipes.totalResults ? <h2>Good news! We have some, here you go:</h2> : <h2>Bad</h2>}
+*/
