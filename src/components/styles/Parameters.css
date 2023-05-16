@@ -11,12 +11,33 @@
 
 }
 
+.options {
+  width: 300px;
+}
+
+.options:hover {
+  background-color: rgb(25, 13, 159);
+  color: rgb(190, 206, 220);
+}
+
+.showRecipes {
+  margin-top: 50px;
+  border: 2px solid transparent;
+  background-color: rgb(25, 13, 159);
+  color: rgb(190, 206, 220);
+}
+
+.showRecipes:hover {
+  border: 2px solid #fff;
+}
+
 button {
   padding: 10px 20px;
   border: 1px solid transparent;
   border-radius: 20px;
   margin: 8px 5px;
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 .filter > button {
@@ -26,7 +47,7 @@ button {
 
 .filter > button:hover {
   background-color: rgb(253, 153, 223);
-  cursor: pointer;
+
   transition: 0.3s;
 }
 
@@ -34,6 +55,3 @@ button {
   background-color: rgb(74, 194, 50);
 }
 
-.options {
-  width: 300px;
-}

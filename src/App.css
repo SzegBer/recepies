@@ -5,3 +5,11 @@
   background-color: rgb(110, 199, 206);
   padding: 30px;
 }
+
+p, h1, h2, h3 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+button {
+  font-family: 'Cabin', sans-serif;
+}

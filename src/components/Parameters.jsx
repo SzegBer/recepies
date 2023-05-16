@@ -13,17 +13,18 @@ const Parameters = () => {
   const [ showCuisineOptions, setShowCuisineOptions ] = useState(false)
   const [ showTypeOptions, setShowTypeOptions ] = useState(false)
   const [ showDietOptions, setShowDietOptions ] = useState(false)
+  const [ showRecipes , setShowRecipes] = useState(false)
 
   const [ options, setOptions ] = useState({
     cuisine: '',
     diet: null,
     type: '',
-    maxReadyTime: '60',
     nr: '3'
   })
 
   // hides / shows the sub-options of the selected option
   const displayOptions = (e) => {
+    setShowRecipes(false)
 
     switch(e.target.value){
       case 'cuisine':
@@ -43,7 +44,7 @@ const Parameters = () => {
     }    
   }
 
-  // changes 'options' state _type_ or _cuisine_ property value (to a single value) + toggles classNames
+  // changes 'options' state _type_ & _cuisine_ property value (to a single value) + toggles classNames
   const changeFilter = (e) => {
     let property = e.target.parentElement.classList[1]
 
@@ -72,10 +73,20 @@ const Parameters = () => {
         diet: e.target.value
       })
     }
+    else if (options.diet === e.target.value) {
+      setOptions((preOptions)=>{
+        return {
+          ...preOptions,
+          diet: null
+        }
+      })
+    }
     else if (options.diet.includes(e.target.value)) {
-      setOptions({
-        ...options,
-        diet: options.diet.replace(`,${e.target.value}`, "")
+      setOptions((preOptions)=>{
+        return {
+          ...preOptions,
+          diet: options.diet.replace(`,${e.target.value}`, "")
+        }
       })
     }
     else {
@@ -91,6 +102,7 @@ const Parameters = () => {
       e.target.className = ""
     }
   }
+
 
   return (
     <div className="parameters">
@@ -110,9 +122,9 @@ const Parameters = () => {
         {showDietOptions && <Suboptions suboptions={diets} changeStg={changeDiet}/>}
       </div>
 
-      <button className='options'>Let's see the recepies</button>
+      <button className="options showRecipes" onClick={() => setShowRecipes(!showRecipes) }>Let's see some recipes</button>
 
-      <Recipe options={options} />
+      {showRecipes && <Recipe options={options} />}
       
     </div>
   )
