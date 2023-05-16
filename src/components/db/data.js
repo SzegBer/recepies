@@ -22,18 +22,18 @@ const cuisines = [
 ]
 
 const types = [
+  { name: 'appetizer', value: 'appetizer'},
+  { name: 'soup', value: 'soup'},
   { name: 'main course', value: 'main%20course'},
   { name: 'side dish', value: 'side%20dish'},
-  { name: 'dessert', value: 'dessert'},
-  { name: 'bread', value: 'bread'},
-  { name: 'appetizer', value: 'appetizer'},
   { name: 'salad', value: 'salad'},
-  { name: 'breakfast', value: 'breakfast'},
-  { name: 'soup', value: 'soup'},
   { name: 'sauce', value: 'sauce'},
-  { name: 'fingerfood', value: 'fingerfood'},
+  { name: 'dessert', value: 'dessert'},
   { name: 'marinade', value: 'marinade'},
+  { name: 'breakfast', value: 'breakfast'},
+  { name: 'fingerfood', value: 'fingerfood'},
   { name: 'snack', value: 'snack'},
+  { name: 'bread', value: 'bread'},
   { name: 'drink', value: 'drink'},
   { name: 'beverage', value: 'beverage'}
 ]

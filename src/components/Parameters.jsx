@@ -1,9 +1,11 @@
 // you can chose the parameters for the recepie you are searching for
 
-import React, { useState, useEffect, useCallback } from "react";
-import Recepie from "./Recepie";
 import './styles/Parameters.css'
+
+import React, { useState, useEffect, useCallback } from "react";
 import { types, diets, cuisines } from './db/data.js'
+
+import Recipe from "./Recipe";
 import Suboptions from "./Suboptions";
 
 const Parameters = () => {
@@ -17,7 +19,7 @@ const Parameters = () => {
     diet: null,
     type: '',
     maxReadyTime: '60',
-    nr: '6'
+    nr: '3'
   })
 
   // hides / shows the sub-options of the selected option
@@ -90,27 +92,27 @@ const Parameters = () => {
     }
   }
 
-
-
   return (
     <div className="parameters">
 
-      <button className="options" value="cuisine" onClick={displayOptions}>search by cuisine</button>
+      <button className="options" value="cuisine" onClick={displayOptions}>filter by cuisine</button>
       <div className="filter cuisine">
         {showCuisineOptions && <Suboptions suboptions={cuisines} changeStg={changeFilter}/>}
       </div>
 
-      <button className="options" value="type" onClick={displayOptions}>search by type</button>
+      <button className="options" value="type" onClick={displayOptions}>filter by type</button>
       <div className="filter type">
         {showTypeOptions && <Suboptions suboptions={types} changeStg={changeFilter}/>}
       </div>
 
-      <button className="options" value="diet" onClick={displayOptions}>search by diet</button>
+      <button className="options" value="diet" onClick={displayOptions}>filter by diet</button>
       <div className="filter diet">
         {showDietOptions && <Suboptions suboptions={diets} changeStg={changeDiet}/>}
       </div>
 
-      {/*<Recepie RECIPE options={options} />*/}
+      <button className='options'>Let's see the recepies</button>
+
+      <Recipe options={options} />
       
     </div>
   )

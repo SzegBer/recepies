@@ -1,10 +1,10 @@
 // single recepie display
 
 import { useFetch } from '../hooks/useFetch'
-import './styles/Recepie.css'
+import './styles/Recipe.css'
 
 
-const Recepie = (props) => {
+const Recipe = (props) => {
 
   // receive options
   // assemble the right url for the fetch
@@ -25,27 +25,26 @@ const Recepie = (props) => {
     return `${baseUrl}?apiKey=${apiKey}&cuisine=${cuisine}&diet=${diet}&type=${type}&maxReadyTime=${maxReadyTime}&number=${nr}`
   }
 
-  console.log("feccs",url)
-  //console.log(options)
   let url = urlBuilder()
-  const { data: recepies } = useFetch(url)
+  console.log(url)
+  //const { data: recipes } = useFetch(url)
 
   return (
-    <div className="recepies">
-      <h2>RANDOM RECEPIES</h2>
+    <div className="recipes">
+      <h2>HERE ARE YOUR RECEPIES</h2>
 
       <div className="hits">
-        {
-        recepies && recepies.results.map((recepie) => (
-          <div className="recepie" key={recepie.id}>
-            <img className="picture" src={recepie.image} alt={recepie.title} />
-            <h3 className="title">{recepie.title}</h3>
+        {/*
+        recipes && recipes.results.map((recipe) => (
+          <div className="recipe" key={recipe.id}>
+            <img className="picture" src={recipe.image} alt={recipe.title} />
+            <h3 className="title">{recipe.title}</h3>
           </div> 
         ))
-        }
+        */}
       </div>
     </div>
   )
 }
 
-export default Recepie;
+export default Recipe;
