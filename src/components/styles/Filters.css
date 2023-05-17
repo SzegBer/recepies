@@ -51,7 +51,7 @@ button {
   transition: 0.3s;
 }
 
-.filter > .chosed {
+.filter .chosen {
   background-color: rgb(74, 194, 50);
 }
 

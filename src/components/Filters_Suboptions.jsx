@@ -1,6 +1,6 @@
 import React from "react"
 
-const Suboptions = (array) => {
+const Filters_Suboptions = (array) => {
 
   const suboptions = array.suboptions
   const change = array.changeStg
@@ -14,4 +14,4 @@ const Suboptions = (array) => {
   )
 }
 
-export default Suboptions
+export default Filters_Suboptions
