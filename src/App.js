@@ -1,14 +1,15 @@
 
 // make options state - give the setState to Filters
 
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 import Filters from './components/Filters';
 import ListRecipes from './components/ListRecipes';
 
 import { FiltersUrlBuilder } from './components/db/urlbuilder';
-import { useFetch } from './hooks/useFetch';
+import { UseFetch } from './hooks/UseFetch';
 import SingleRecipe from './components/SingleRecipe';
+import { ChosenRecipeUrlBuilder } from './hooks/urlbuilder';
 
 
 function App() {
@@ -19,16 +20,24 @@ function App() {
     diet: null,
     type: '',
   })
+  const [ingredients, setIngredients] = useState()
 
   // make the fetch to fill up ListRecipes component
-  let result = useFetch(FiltersUrlBuilder(filterOptions, 3))
+  let result = UseFetch(FiltersUrlBuilder(filterOptions, 3))
+
   setTimeout(() => {
     setShowListRecipes(true)
   }, 500);
+  
+  function getChosenRecipe (){
+    let info = UseFetch(ChosenRecipeUrlBuilder)
+    setIngredients(info)
+    console.log(ingredients)
+  }
 
 
 
-
+  // let ingredients = useFetch(ChosenRecipeUrlBuilder(chosenRecipeId))
 
   return (
     <div className="App">
@@ -46,6 +55,8 @@ function App() {
       />}
 
       {chosenRecipeId && <SingleRecipe
+        ingredients={ingredients}
+        chosenRecipeId={chosenRecipeId}
         setChosenRecipeId={setChosenRecipeId}
       />}
 

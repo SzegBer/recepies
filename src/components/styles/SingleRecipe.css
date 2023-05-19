@@ -8,8 +8,35 @@
 }
 .modal {
   padding: 30px;
-  max-width: 480px;
+  max-width: 650px;
   margin: 200px auto;
   background: #fff;
   border-radius: 10px;
+
+  display: grid;
+  grid-template-areas: 
+  "title title"
+  "ingredients information"
+  "ingredients information"
+  "ingredients information";
 }
+
+.title {
+  grid-area: title;
+  display: flex;
+  align-items: center;
+}
+
+img {
+  max-width: 30%;
+}
+
+.ingredients{
+  grid-area: ingredients;
+  max-width: 50%;
+}
+
+.information{
+  grid-area: information;
+}
+

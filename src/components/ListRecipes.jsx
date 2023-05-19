@@ -5,7 +5,7 @@
 
 import './styles/ListRecipes.css'
 
-import { useFetch } from '../hooks/useFetch'
+import { useFetch } from '../hooks/UseFetch'
 import { useState } from 'react'
 import SingleRecipe from './SingleRecipe'
 
