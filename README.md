@@ -11,10 +11,7 @@ The options and filters are dinamically injected from an inner database so it is
 - Javascript / CSS / HTML
 - React (create-react-app)
 - Node.js
-- REST API (spoonacular.com)
-
-# Webdesign inspiration:
-
+- REST API
 
 # Sneak a peak:
 ![screenshot01](https://github.com/SzegBer/recepies/blob/main/recipes_01.png)
