@@ -3,61 +3,57 @@ import { ChosenRecipeUrlBuilder } from "../hooks/urlbuilder"
 import { useFetch } from "../hooks/useFetch"
 import './styles/SingleRecipe.css'
 
-const SingleRecipe = (props) => {
+const SingleRecipe = ({ recipe, chosenRecipeId, setChosenRecipeId }) => {
 
-  const chosenRecipeId = props.chosenRecipeId
-  const setChosenRecipeId = props.setChosenRecipeId
-  const details = props.ingredients
+  // const chosenRecipeId = props.chosenRecipeId
+  // const setChosenRecipeId = props.setChosenRecipeId
+  // const details = props.ingredients
 
-
+  console.log(recipe)
 
   //const ingredients = props.result
   //console.log(ingredients)
 
 
-    if(details)
+    if(recipe)
     return (
       <div className="SingleRecipe modal-backdrop">
-      <div className="modal">
+        <div className="modal">
 
-        <div className="title">
-          <img src={details.image} alt={details.title} />
-          <h2>{details.title}</h2>
+          <div className="header">
+              <button onClick={()=>(setChosenRecipeId())}>x</button>
+          <img src={recipe.image} alt={recipe.title} />
+            <div className="info">
+              <h3>{recipe.title}</h3>
+              {recipe.glutenFree ? <span className="diet yes">gluten free</span> : <span className="diet no">not gluten free</span>}
+              {recipe.dairyFree ? <span className="diet yes">dairy free</span> : <span className="diet no">not dairy free</span>}
+              {recipe.vegan ? <span className="diet yes">vegan</span> : <span className="diet no">not vegan</span>}
+              {recipe.vegetarian ? <span className="diet yes">vegetarian</span> : <span className="diet no">not vegetarian</span>}
+              <p>Ready in about {recipe.readyInMinutes} minutes. 
+              Get full recipe: <a href={recipe.sourceUrl}> {recipe.sourceName}</a></p>
+            </div>
+
+          </div>
+
+          <div className="ingredients">
+            <h3>Ingredients ({recipe.servings} servings)</h3>
+            <ul>
+              {recipe.extendedIngredients.map((item)=>(
+                <li key={item.id}>
+                  <p>{item.original}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {recipe.winePairing.pairingText && <div className="wine">
+            <h3>Wine pairing</h3>
+            <p>{recipe.winePairing.pairingText}</p>
+          </div>
+          }     
+          
         </div>
-
-        <div className="ingredients">
-          <h3>Ingredients</h3>
-          <ul>
-            {details.extendedIngredients.map((item)=>(
-              <li>
-                <span>{Math.floor(item.measures.metric.amount)}</span> 
-                <span>{item.measures.metric.unitShort}</span>
-                <p>{item.name}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="information">
-          <h3>Information</h3>
-        </div>
-
-        <p>winePairing.pairingText milyen bor</p>
-        <p><span>servings: </span>2</p>
-        <p><span>readyInMinutes: </span>45 mins</p>
-        <p><span>sourceName: </span>Full Belly Sisters</p>
-        
-
-        <h2>Instructions:</h2>
-        <button onClick={()=>(setChosenRecipeId())}>Close</button>
-
       </div>
-
-    </div>
-
-
-    
-
   )
 }
 

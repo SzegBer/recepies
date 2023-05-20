@@ -17,18 +17,17 @@ function App() {
     diet: null,
     type: '',
   })
-  const [ingredients, setIngredients] = useState([])
+  //const [ingredients, setIngredients] = useState([])
 
   // make the fetch to fill up ListRecipes component
   let { 
     data: recipesList,
-    isPending: listIspending,
     error: listError } = useFetch(FiltersUrlBuilder(filterOptions, 3))
 
-  // if(chosenRecipeId){
-  //   let { data, isPending, error } = useFetch(ChosenRecipeUrlBuilder(chosenRecipeId))
-  //   setIngredients(data)
-  // }
+
+  let { data: recipe, error: ingrError } = useFetch(ChosenRecipeUrlBuilder(chosenRecipeId))
+
+
 
 
   return (
@@ -52,7 +51,7 @@ function App() {
       }
 
       {chosenRecipeId && <SingleRecipe
-        ingredients={ingredients}
+        recipe={recipe}
         chosenRecipeId={chosenRecipeId}
         setChosenRecipeId={setChosenRecipeId}
       />}
