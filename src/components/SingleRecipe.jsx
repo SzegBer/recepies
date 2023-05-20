@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { ChosenRecipeUrlBuilder } from "../hooks/urlbuilder"
-import { useFetch } from "../hooks/UseFetch"
+import { useFetch } from "../hooks/useFetch"
 import './styles/SingleRecipe.css'
 
 const SingleRecipe = (props) => {

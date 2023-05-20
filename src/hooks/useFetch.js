@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export const UseFetch = (url, options) => {
+export const useFetch = (url, options) => {
 
   const [data, setData] = useState()
   const [error, setError] = useState(null)
@@ -18,13 +18,10 @@ export const UseFetch = (url, options) => {
           throw new Error(res.statusText)
         }
         const data = await res.json()
-
-
         setData(data)
         setError(null)
       } catch (err) {
         if (err.name !== "AbortError") {
-
           setError('Could not fetch the data')
         }
       }

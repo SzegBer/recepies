@@ -5,17 +5,21 @@
 
 import './styles/ListRecipes.css'
 
-import { useFetch } from '../hooks/UseFetch'
+import { useFetch } from '../hooks/useFetch'
 import { useState } from 'react'
 import SingleRecipe from './SingleRecipe'
 
-const ListRecipes = (props) => {
+const ListRecipes = ({ recipesList, setChosenRecipeId }) => {
   const [ recipeId, setRecipeId ] = useState()
 
-  const totalResults = props.result.totalResults
-  const recipes = props.result.results
-  const setChosenRecipeId = props.setChosenRecipeId
+    const recipes = recipesList.results
+    const totalResults = recipesList.totalResults
 
+    if(totalResults === 0){
+      return (
+        <h3>Sorry, it seems like we do not have the recipe you are looking for. Please adjust the filters.</h3>
+      )
+    }
 
   // const urlBuilder = () => {
   //   const baseUrl = 'https://api.spoonacular.com/recipes/complexSearch'
