@@ -1,3 +1,4 @@
+//react & other stuff
 import React from "react"
 
 const FilterSuboptions = (array) => {

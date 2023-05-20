@@ -1,34 +1,29 @@
-import { useState } from 'react';
+//styles
 import './App.css';
+
+//react & other stuff
+import { useState } from 'react';
+import { ChosenRecipeUrlBuilder, FiltersUrlBuilder } from './hooks/urlbuilder';
+import { useFetch } from './hooks/useFetch';
+
+// components
 import Filters from './components/Filters';
 import ListRecipes from './components/ListRecipes';
-
-import { FiltersUrlBuilder } from './components/db/urlbuilder';
-import { useFetch } from './hooks/useFetch';
 import SingleRecipe from './components/SingleRecipe';
-import { ChosenRecipeUrlBuilder } from './hooks/urlbuilder';
-
 
 function App() {
   const [ chosenRecipeId, setChosenRecipeId ] = useState()
-  // const [ showListRecipes, setShowListRecipes ] = useState(false)
   const [ filterOptions, setFilterOptions ] = useState({
     cuisine: '',
     diet: null,
     type: '',
   })
-  //const [ingredients, setIngredients] = useState([])
 
   // make the fetch to fill up ListRecipes component
-  let { 
-    data: recipesList,
-    error: listError } = useFetch(FiltersUrlBuilder(filterOptions, 3))
+  let { data: recipesList, error: listError } = useFetch(FiltersUrlBuilder(filterOptions, 16))
 
-
+  // make the fetch to get ingredients for a single recipe
   let { data: recipe, error: ingrError } = useFetch(ChosenRecipeUrlBuilder(chosenRecipeId))
-
-
-
 
   return (
     <div className="App">
@@ -56,15 +51,8 @@ function App() {
         setChosenRecipeId={setChosenRecipeId}
       />}
 
-
-
     </div>
   );
 }
-
-
-
-
-
 
 export default App;

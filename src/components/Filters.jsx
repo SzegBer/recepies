@@ -1,11 +1,9 @@
-// you can chose the parameters for the recepie you are searching for
-
 //styles
 import './styles/Filters.css'
 
 //react & other stuff
 import React, { useState } from "react";
-import { types, diets, cuisines } from './db/data.js'
+import { types, diets, cuisines } from '../db/data.js'
 
 // components
 import Filters_Suboptions from "./Filters_Suboptions";
@@ -122,13 +120,3 @@ const Filters = (props) => {
 }
 
 export default Filters;
-
-
-/*
-    if(e.target.className === ""){
-      e.target.className = "chosen"
-    } else {
-      e.target.className = ""
-    }
-
-*/

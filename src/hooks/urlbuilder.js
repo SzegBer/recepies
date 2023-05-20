@@ -1,4 +1,3 @@
-
 const baseUrl = 'https://api.spoonacular.com/recipes'
 const apiKey = 'f9d7f1bf8069414388b168f2bd13947b'
 
@@ -11,10 +10,10 @@ const FiltersUrlBuilder = (object, nr) => {
   return `${baseUrl}/complexSearch?apiKey=${apiKey}&cuisine=${cuisine}&diet=${diet}&type=${type}&number=${nr}`
 }
 
+// builds the URL for fetch - based on recipe id
 const ChosenRecipeUrlBuilder = (id) => {
   return `${baseUrl}/${id}/information?apiKey=${apiKey}`
 }
-
 
 
 export { FiltersUrlBuilder, ChosenRecipeUrlBuilder }

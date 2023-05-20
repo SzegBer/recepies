@@ -1,55 +1,21 @@
-// single recepie display
-// receive options
-// assemble the right url for the fetch
-// fetch and give the data to map function to display a few of them.
-
+//styles
 import './styles/ListRecipes.css'
 
-import { useFetch } from '../hooks/useFetch'
-import { useState } from 'react'
-import SingleRecipe from './SingleRecipe'
-
 const ListRecipes = ({ recipesList, setChosenRecipeId }) => {
-  const [ recipeId, setRecipeId ] = useState()
 
-    const recipes = recipesList.results
-    const totalResults = recipesList.totalResults
+  const recipes = recipesList.results
+  const totalResults = recipesList.totalResults
 
-    if(totalResults === 0){
-      return (
-        <h3>Sorry, it seems like we do not have the recipe you are looking for. Please adjust the filters.</h3>
-      )
-    }
-
-  // const urlBuilder = () => {
-  //   const baseUrl = 'https://api.spoonacular.com/recipes/complexSearch'
-  //   const apiKey = 'f9d7f1bf8069414388b168f2bd13947b'
-
-  //   return `${baseUrl}?apiKey=${apiKey}&cuisine=${options.cuisine}&diet=${options.diet}&type=${options.type}&number=${options.nr}`
-  // }
-
-  //let url = urlBuilder()
-  //const { data: recipes } = useFetch(url)
-
-
-  // Tidy up the values from options state (change their URL related special characters) to display them in the DOM 
-  // const neatCuisine = options.cuisine.replace(/%20/g, " ")
-  // const neatType = options.type.replace(/%20/g, " ")
-  // let pattern = /[A-Z]/
-  // let neatDiet = ''
-  // if(options.diet !== null){
-  //   for(let i=0; i<options.diet.length; i++){
-  //     pattern.test(options.diet[i]) ? 
-  //       neatDiet = neatDiet + " " + options.diet[i] : 
-  //       neatDiet = neatDiet + options.diet[i]
-  //   }
-  // }
-
+  if(totalResults === 0){
+    return (
+      <h3>Sorry, it seems like we do not have the recipe you are looking for. Please adjust the filters.</h3>
+    )
+  }
 
 
   return (
-    <div className="recipes">
 
+    <div className="recipes">
       <div className="hits">
         {recipes && recipes.map((recipe) => (
           <div className="recipe" key={recipe.id} onClick={() => (setChosenRecipeId(recipe.id))}>
@@ -59,14 +25,8 @@ const ListRecipes = ({ recipesList, setChosenRecipeId }) => {
         ))
         }
       </div>
-
     </div>
   )
 }
 
 export default ListRecipes;
-
-/*
-
-{recipes.totalResults ? <h2>Good news! We have some, here you go:</h2> : <h2>Bad</h2>}
-*/
