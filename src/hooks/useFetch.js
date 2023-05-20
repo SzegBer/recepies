@@ -22,10 +22,8 @@ export const useFetch = (url, options) => {
         setError(null)
         
       } catch (err) {
-        if(res.code===402){
-          setError('Your daily request limit has been reached for this API. Please come back tomorrow.')
-        } else if (err.name !== "AbortError") {
-          setError('Could not fetch the data')
+        if (err.name !== "AbortError") {
+          setError('Could not fetch the data. Probably your daily request limit has been reached for this API. Please come back tomorrow.')
         }
       }
     }
