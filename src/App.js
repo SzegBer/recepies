@@ -21,10 +21,7 @@ function App() {
   })
 
   // make the fetch to fill up ListRecipes component
-  let { data: recipesList, error: listError } = useFetch(FiltersUrlBuilder(filterOptions, 3))
-
-  // make the fetch to get ingredients for a single recipe
-  let { data: recipe, error: ingrError } = useFetch(ChosenRecipeUrlBuilder(chosenRecipeId))
+  let { data: recipesList, error: listError } = useFetch(FiltersUrlBuilder(filterOptions, 9))
 
   return (
     <div className="App">
@@ -45,7 +42,6 @@ function App() {
       {listError && <Error listError={listError}/>}
 
       {chosenRecipeId && <SingleRecipe
-        recipe={recipe}
         chosenRecipeId={chosenRecipeId}
         setChosenRecipeId={setChosenRecipeId}
       />}
