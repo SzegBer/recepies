@@ -20,16 +20,8 @@ a {
   color: rgb(212, 0, 212);
 }
 
-.error {
-  margin: auto;
-  width: 60%;
-  min-height: 300px;
-  background-color: rgb(241, 178, 178);
+.App h1,
+.App h3 {
   text-align: center;
-  padding: 20px;
-  border-radius: 20px;
-}
-
-.error p {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }

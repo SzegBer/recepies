@@ -1,10 +1,7 @@
 //react & other stuff
 import React from "react"
 
-const FilterSuboptions = (array) => {
-
-  const suboptions = array.suboptions
-  const change = array.change
+const FilterSuboptions = ({suboptions, change}) => {
 
   return (
     suboptions.map((suboptions, i) => (

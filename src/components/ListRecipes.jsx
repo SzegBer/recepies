@@ -1,7 +1,7 @@
 //styles
 import './styles/ListRecipes.css'
 
-const ListRecipes = ({ recipesList, setChosenRecipeId }) => {
+const ListRecipes = ({ recipesList, setChosenRecipeId, filterOptions }) => {
 
   const recipes = recipesList.results
   const totalResults = recipesList.totalResults
@@ -16,6 +16,7 @@ const ListRecipes = ({ recipesList, setChosenRecipeId }) => {
   return (
 
     <div className="recipes">
+      <h2>Here are some yummy recipes:</h2>
       <div className="hits">
         {recipes && recipes.map((recipe) => (
           <div className="recipe" key={recipe.id} onClick={() => (setChosenRecipeId(recipe.id))}>

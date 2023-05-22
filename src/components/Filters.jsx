@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { types, diets, cuisines } from '../db/data.js'
 
 // components
-import Filters_Suboptions from "./Filters_Suboptions";
+import FilterSuboptions from "./FilterSuboptions";
 
 const Filters = (props) => {
 
@@ -101,17 +101,17 @@ const Filters = (props) => {
 
       <button className="options" value="cuisine" onClick={displayOptions}>filter by cuisine</button>
       <div className="filter cuisine">
-        {showCuisineOptions && <Filters_Suboptions suboptions={cuisines} changeStg={changeFilter}/>}
+        {showCuisineOptions && <FilterSuboptions suboptions={cuisines} change={changeFilter}/>}
       </div>
 
       <button className="options" value="type" onClick={displayOptions}>filter by type</button>
       <div className="filter type">
-        {showTypeOptions && <Filters_Suboptions suboptions={types} changeStg={changeFilter}/>}
+        {showTypeOptions && <FilterSuboptions suboptions={types} change={changeFilter}/>}
       </div>
 
       <button className="options" value="diet" onClick={displayOptions}>filter by diet</button>
       <div className="filter diet">
-        {showDietOptions && <Filters_Suboptions suboptions={diets} changeStg={changeDiet}/>}
+        {showDietOptions && <FilterSuboptions suboptions={diets} change={changeDiet}/>}
       </div>
       
     </div>
